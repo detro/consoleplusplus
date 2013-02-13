@@ -1,5 +1,6 @@
 /**
- * Console++ - enhance your "console".
+ * Console++ - enhance your console
+ * @author Ivan De Marino <detronizator@gmail.com>
  */
 
 if (console.LEVELS) {

@@ -1,1 +1,1 @@
-# Console++
+# Console++ - enhance your `console`
