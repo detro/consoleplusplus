@@ -56,7 +56,8 @@ var _ANSICODES = {
     _level = _LEVELS.DEBUG,
     _colored = true,
     _messageColored = false,
-    _timed = true
+    _timed = true,
+    _onOutput = null;
     ;
 
 /**
@@ -112,6 +113,8 @@ var _decorateArgs = function(argsArray, level) {
 
     if (console.isColored()) {
         levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}");
+        msg = _applyColors(msg);
+
         if (console.isMessageColored()) {
             msg = _applyColors("#" + console.getLevelColor(level) + "{" + msg + "}");
         }
@@ -119,15 +122,48 @@ var _decorateArgs = function(argsArray, level) {
         levelMsg = console.getLevelName(level);
     }
 
-    if (console.isTimestamped()) {
-        msg = "[" + levelMsg + " - " + new Date().toJSON() + "] " + msg;
-    } else {
-        msg = "[" + levelMsg + "] " + msg;
-    }
+    msg = _formatMessage(msg, levelMsg);
 
     args.splice(0, 0, msg);
 
     return args;
+};
+
+/**
+ * Formats the Message content.
+ * @param msg The message itself
+ * @param levelMsg The portion of message that contains the Level (maybe colored)
+ * @retuns The formatted message
+ */
+var _formatMessage = function(msg, levelMsg) {
+    if (console.isTimestamped()) {
+        return "[" + levelMsg + " - " + new Date().toJSON() + "] " + msg;
+    } else {
+        return "[" + levelMsg + "] " + msg;
+    }
+};
+
+/**
+ * Invokes the "console.onOutput()" callback, if it was set by user.
+ * This is useful in case the user wants to write the console output to another media as well.
+ *
+ * The callback is invoked with 2 parameters:
+ * - formattedMessage: formatted message, ready for output
+ * - levelName: the name of the logging level, to inform the user
+ *
+ * @param msg The Message itself
+ * @param level The Message Level (Number)
+ */
+var _invokeOnOutput = function(msg, level) {
+    var formattedMessage,
+        levelName;
+
+    if (_onOutput !== null && typeof(_onOutput) === "function") {
+        formattedMessage = _formatMessage(msg, levelName);
+        levelName = console.getLevelName(level);
+
+        _onOutput(formattedMessage, levelName);
+    }
 };
 
 
@@ -185,6 +221,12 @@ console.isTimestamped = function() {
     return _timed;
 };
 
+// Set OnOutput Callback (useful to write to file or something)
+// Callback: `function(formattedMessage, levelName)`
+console.onOutput = function(callback) {
+    _onOutput = callback;
+};
+
 // Decodes coloring markup in string
 console.str2clr = function(str) {
     if (console.isColored) {
@@ -195,27 +237,31 @@ console.str2clr = function(str) {
 };
 
 // Overrides some key "console" Object methods
-console.error = function() {
+console.error = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.ERROR)) {
         _console.error.apply(this, _decorateArgs(arguments, _LEVELS.ERROR));
+        _invokeOnOutput(msg, _LEVELS.ERROR);
     }
 };
-console.warn = function() {
+console.warn = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.WARN)) {
         _console.warn.apply(this, _decorateArgs(arguments, _LEVELS.WARN));
+        _invokeOnOutput(msg, _LEVELS.WARN);
     }
 };
-console.info = function() {
+console.info = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.INFO)) {
         _console.info.apply(this, _decorateArgs(arguments, _LEVELS.INFO));
+        _invokeOnOutput(msg, _LEVELS.INFO);
     }
 };
-console.debug = function() {
+console.debug = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.DEBUG)) {
         _console.debug.apply(this, _decorateArgs(arguments, _LEVELS.DEBUG));
+        _invokeOnOutput(msg, _LEVELS.DEBUG);
     }
 };
-console.log = function() {
+console.log = function(msg) {
     if (arguments.length > 0) {
         _console.log.apply(this, arguments);
     }
