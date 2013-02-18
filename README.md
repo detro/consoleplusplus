@@ -6,7 +6,13 @@ like that.
 And it works with both [PhantomJS](http://phantomjs.org) and
 [NodeJS](http://nodejs.org) (and pretty much any proper JavaScript runtime).
 
-## How does it make it awesomeR?
+### NPM _onliner_?
+
+```
+npm install consoleplusplus
+```
+
+## How does it make it _awesomeR_?
 
 Like this:
 
@@ -45,13 +51,6 @@ console.error("A (critical!) console.error message");
 and you get:
 
 ![alt text](https://raw.github.com/detro/consoleplusplus/master/README.pics/console++-1.png "Some output")
-
-### NPM?
-
-Yep!
-```
-npm install consoleplusplus
-```
 
 ## No really, how?
 
