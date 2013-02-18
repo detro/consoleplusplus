@@ -1,6 +1,10 @@
 # Console++ - enhance your `console`
 
-**Console++** makes your `console` awesomeR.
+**Console++** makes your `console` awesomeR. Colors, logging level and shit
+like that.
+
+And it works with both [PhantomJS](http://phantomjs.org) and
+[NodeJS](http://nodejs.org) (and pretty much any proper JavaScript runtime).
 
 ## How does it make it awesomeR?
 
