@@ -1,6 +1,6 @@
 # Console++ - enhance your `console`
 
-**Console++** makes your `console` awesomeR. Colors, logging level and shit
+**Console++** makes your `console` awesomeR. Colours, logging level and shit
 like that.
 
 And it works with both [PhantomJS](http://phantomjs.org) and
@@ -28,7 +28,7 @@ _Here is for the lazy developer!_
 
 ## How do I use it?
 
-Ehm, like a `console` genius! Just type stuff like:
+_Ehm_, like a `console` genius! Just type stuff like:
 
 ```javascript
 console.log("A (boring) console.log message");
@@ -45,6 +45,13 @@ console.error("A (critical!) console.error message");
 and you get:
 
 ![alt text](https://raw.github.com/detro/consoleplusplus/master/README.pics/console++-1.png "Some output")
+
+### NPM?
+
+Yep!
+```
+npm install consoleplusplus
+```
 
 ## No really, how?
 
@@ -115,3 +122,8 @@ console.isTimestamped();
 // Callback: `function(formattedMessage, levelName)`
 console.onOutput(callback);             //< default `null`
 ```
+
+## Links
+
+On NPM: https://npmjs.org/package/consoleplusplus
+On GitHub: https://github.com/detro/consoleplusplus
