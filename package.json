@@ -1,0 +1,26 @@
+{
+    "name": "consoleplusplus",
+    "version": "1.0.0",
+    "description": "Console++ - enhance your console",
+    "main": "console++.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "node test/basic_test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/detro/consoleplusplus.git"
+    },
+    "keywords": [
+        "console",
+        "log",
+        "level",
+        "colours"
+    ],
+    "author": "Ivan De Marino <http://ivandemarino.me>",
+    "license": "BSD",
+    "readmeFilename": "README.md",
+    "gitHead": "7c1fd36b34d77821e82a1c699e69eb21364b876c"
+}
