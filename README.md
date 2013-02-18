@@ -39,7 +39,8 @@ console.error("A (critical!) console.error message");
 ```
 
 and you get:
-<img src="1" />
+
+![alt text](https://raw.github.com/detro/consoleplusplus/master/README.pics/console++-1.png "Some output")
 
 ## No really, how?
 
@@ -68,7 +69,8 @@ console.debug(message);
 ```
 
 to print something like:
-<img src="2" />
+
+![alt text](https://raw.github.com/detro/consoleplusplus/master/README.pics/console++-2.png "Some colored output")
 
 **PLEASE**, do read the code to learn more.
 
