@@ -125,5 +125,7 @@ console.onOutput(callback);             //< default `null`
 
 ## Links
 
-On NPM: https://npmjs.org/package/consoleplusplus
-On GitHub: https://github.com/detro/consoleplusplus
+* On NPM: https://npmjs.org/package/consoleplusplus
+* On GitHub: https://github.com/detro/consoleplusplus
+
+_Keep calm and make awesome_.
