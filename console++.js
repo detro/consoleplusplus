@@ -135,18 +135,26 @@ var _applyColors = function(str) {
     return str;
 };
 
+var _replaceCodesForBrowser = function(str) {
+    return str.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
+};
+
 /**
- * Take a string and apply console ANSI colors for expressions "#color{msg}"
+ * Take a string and return an array of CSS styles for expressions "#color{msg}"
  * NOTE: Does nothing if "console.colored === false".
  *
  * @param str Input String
- * @returns Same string but with colors applied
+ * @returns An array with a list of CSS styles to apply later
  */
 var _getStyleCodes = function(str) {
     var tag = /#([a-z]+)\{.*?\}/g,
         cstack = [],
         match = tag.exec(str),
         i = 0;
+
+    if (!console.isColored()) {
+        return [];
+    }
 
     while (match) {
         if (match[1] in _CSSCODES) {
@@ -180,19 +188,19 @@ var _decorateArgs = function(argsArray, level) {
         if (console.isMessageColored()) {
             msg = _applyColors("#" + console.getLevelColor(level) + "{" + msg + "}");
         }
+
+        msg = _formatMessage(msg, levelMsg);
     } else if (console.isColored() && console.isBrowser()) {
+        colorCodeArgs = [ 'color:black;' ];
         colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(levelMsg));
         colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(msg));
-        levelMsg = levelMsg.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
-        msg = msg.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
-        // First get all the codes to put at the end of args
-        // Then replace all the codes in the message with %c
+        levelMsg = _replaceCodesForBrowser(levelMsg);
+        msg = _replaceCodesForBrowser(msg);
+        msg = '%c' + _formatMessage(msg, levelMsg);
         // See this: https://plus.google.com/115133653231679625609/posts/TanDFKEN9Kn
     } else {
         levelMsg = console.getLevelName(level);
     }
-
-    msg = _formatMessage(msg, levelMsg);
 
     args.splice(0, 0, msg);
 
@@ -314,8 +322,11 @@ console.onOutput = function(callback) {
 
 // Decodes coloring markup in string
 console.str2clr = function(str) {
-    if (console.isColored) {
-        return _applyColors(str);
+    if (console.isColored()) {
+        if (!console.isBrowser()) {
+            return _applyColors(str);
+        }
+        return str;
     } else {
         return str;
     }

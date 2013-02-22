@@ -1,5 +1,5 @@
 if (typeof require !== 'undefined') {
-	require("../console++.js");
+    require("../console++.js");
 }
 
 console.log("A (boring) console.log message");
@@ -19,7 +19,11 @@ console.debug(message);
 
 function printLevels() {
     console.log("test");
-    console.debug("debug "+console.str2clr("#cyan{verde}"));
+    if (console.isBrowser()) {
+        console.debug("debug "+console.str2clr("#cyan{verde}"));
+    } else {
+        console.debug("debug "+console.str2clr("#cyan{verde}"));
+    }
     console.info("info");
     console.warn("warning #blink{blink}")
     console.error("error");
@@ -36,7 +40,7 @@ printLevels();
 console.enableTimestamp();
 
 if (typeof require !== 'undefined') {
-	require("../console++.js");
+    require("../console++.js");
 }
 
 console.setLevel(console.LEVELS.WARN);
