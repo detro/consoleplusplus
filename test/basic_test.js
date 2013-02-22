@@ -1,4 +1,6 @@
-require("../console++.js");
+if (typeof require !== 'undefined') {
+	require("../console++.js");
+}
 
 console.log("A (boring) console.log message");
 
@@ -32,7 +34,10 @@ console.disableTimestamp();
 console.setLevel(console.LEVELS.INFO);
 printLevels();
 console.enableTimestamp();
-require("../console++.js");
+
+if (typeof require !== 'undefined') {
+	require("../console++.js");
+}
 
 console.setLevel(console.LEVELS.WARN);
 console.disableColor();

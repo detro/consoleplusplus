@@ -49,11 +49,11 @@ var _ANSICODES = {
         'white'     : '\033[37m'
     },
     _CSSCODES = {
-        'reset'     : '\033[0m',
-        'bold'      : '\033[1m',
-        'italic'    : '\033[3m',
-        'underline' : '\033[4m',
-        'blink'     : '\033[5m',
+        'reset'     : 'color:black;text-decoration:none;font-style:normal;font-weight:normal;',
+        'bold'      : 'font-weight:bold;',
+        'italic'    : 'font-style:italic;',
+        'underline' : 'text-decoration:underline;',
+        'blink'     : 'text-decoration:blink;',
         'black'     : 'color:black;',
         'red'       : 'color:red;',
         'green'     : 'color:green;',
@@ -136,6 +136,30 @@ var _applyColors = function(str) {
 };
 
 /**
+ * Take a string and apply console ANSI colors for expressions "#color{msg}"
+ * NOTE: Does nothing if "console.colored === false".
+ *
+ * @param str Input String
+ * @returns Same string but with colors applied
+ */
+var _getStyleCodes = function(str) {
+    var tag = /#([a-z]+)\{.*?\}/g,
+        cstack = [],
+        match = tag.exec(str),
+        i = 0;
+
+    while (match) {
+        if (match[1] in _CSSCODES) {
+            cstack.push(_CSSCODES[match[1]]);
+            cstack.push(_CSSCODES.reset);
+        }
+        match = tag.exec(str);
+    }
+
+    return cstack;
+};
+
+/**
  * Decorate the Arguments passed to the console methods we override.
  * First element, the message, is now colored, timed and more (based on config).
  *
@@ -145,17 +169,22 @@ var _applyColors = function(str) {
  */
 var _decorateArgs = function(argsArray, level) {
     var args = Array.prototype.slice.call(argsArray, 1),
+        colorCodeArgs = [],
         msg = argsArray[0],
-        levelMsg;
+        levelMsg = "#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}";
 
     if (console.isColored() && !console.isBrowser()) {
-        levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}");
+        levelMsg = _applyColors(levelMsg);
         msg = _applyColors(msg);
 
         if (console.isMessageColored()) {
             msg = _applyColors("#" + console.getLevelColor(level) + "{" + msg + "}");
         }
     } else if (console.isColored() && console.isBrowser()) {
+        colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(levelMsg));
+        colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(msg));
+        levelMsg = levelMsg.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
+        msg = msg.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
         // First get all the codes to put at the end of args
         // Then replace all the codes in the message with %c
         // See this: https://plus.google.com/115133653231679625609/posts/TanDFKEN9Kn
@@ -167,7 +196,7 @@ var _decorateArgs = function(argsArray, level) {
 
     args.splice(0, 0, msg);
 
-    return args;
+    return args.concat(colorCodeArgs);
 };
 
 /**
