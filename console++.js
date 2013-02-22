@@ -48,6 +48,21 @@ var _ANSICODES = {
         'cyan'      : '\033[36m',
         'white'     : '\033[37m'
     },
+    _CSSCODES = {
+        'reset'     : 'color:black;text-decoration:none;font-style:normal;font-weight:normal;',
+        'bold'      : 'font-weight:bold;',
+        'italic'    : 'font-style:italic;',
+        'underline' : 'text-decoration:underline;',
+        'blink'     : 'text-decoration:blink;',
+        'black'     : 'color:black;',
+        'red'       : 'color:red;',
+        'green'     : 'color:green;',
+        'yellow'    : 'color:yellow;',
+        'blue'      : 'color:blue;',
+        'magenta'   : 'color:magenta;',
+        'cyan'      : 'color:cyan;',
+        'white'     : 'color:white;'
+    },
     _LEVELS     = {
         ERROR       : 0,
         WARN        : 1,
@@ -120,6 +135,38 @@ var _applyColors = function(str) {
     return str;
 };
 
+var _replaceCodesForBrowser = function(str) {
+    return str.replace(/#([a-z]+)\{(.*?)\}/g, "%c$2%c");
+};
+
+/**
+ * Take a string and return an array of CSS styles for expressions "#color{msg}"
+ * NOTE: Does nothing if "console.colored === false".
+ *
+ * @param str Input String
+ * @returns An array with a list of CSS styles to apply later
+ */
+var _getStyleCodes = function(str) {
+    var tag = /#([a-z]+)\{.*?\}/g,
+        cstack = [],
+        match = tag.exec(str),
+        i = 0;
+
+    if (!console.isColored()) {
+        return [];
+    }
+
+    while (match) {
+        if (match[1] in _CSSCODES) {
+            cstack.push(_CSSCODES[match[1]]);
+            cstack.push(_CSSCODES.reset);
+        }
+        match = tag.exec(str);
+    }
+
+    return cstack;
+};
+
 /**
  * Decorate the Arguments passed to the console methods we override.
  * First element, the message, is now colored, timed and more (based on config).
@@ -130,25 +177,34 @@ var _applyColors = function(str) {
  */
 var _decorateArgs = function(argsArray, level) {
     var args = Array.prototype.slice.call(argsArray, 1),
+        colorCodeArgs = [],
         msg = argsArray[0],
-        levelMsg;
+        levelMsg = "#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}";
 
-    if (console.isColored()) {
-        levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}");
+    if (console.isColored() && !console.isBrowser()) {
+        levelMsg = _applyColors(levelMsg);
         msg = _applyColors(msg);
 
         if (console.isMessageColored()) {
             msg = _applyColors("#" + console.getLevelColor(level) + "{" + msg + "}");
         }
+
+        msg = _formatMessage(msg, levelMsg);
+    } else if (console.isColored() && console.isBrowser()) {
+        colorCodeArgs = [ 'color:black;' ];
+        colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(levelMsg));
+        colorCodeArgs = colorCodeArgs.concat(_getStyleCodes(msg));
+        levelMsg = _replaceCodesForBrowser(levelMsg);
+        msg = _replaceCodesForBrowser(msg);
+        msg = '%c' + _formatMessage(msg, levelMsg);
+        // See this: https://plus.google.com/115133653231679625609/posts/TanDFKEN9Kn
     } else {
         levelMsg = console.getLevelName(level);
     }
 
-    msg = _formatMessage(msg, levelMsg);
-
     args.splice(0, 0, msg);
 
-    return args;
+    return args.concat(colorCodeArgs);
 };
 
 /**
@@ -221,6 +277,21 @@ console.isColored = function () {
     return _colored;
 };
 
+console.isBrowser = function() {
+    return typeof window !== 'undefined';
+};
+
+// Enable/Disable Colored Output
+console.enableColor = function() {
+    _colored = true;
+};
+console.disableColor = function() {
+    _colored = false;
+};
+console.isColored = function () {
+    return _colored;
+};
+
 // Enable/Disable Colored Message Output
 console.enableMessageColor = function() {
     _messageColored = true;
@@ -251,8 +322,11 @@ console.onOutput = function(callback) {
 
 // Decodes coloring markup in string
 console.str2clr = function(str) {
-    if (console.isColored) {
-        return _applyColors(str);
+    if (console.isColored()) {
+        if (!console.isBrowser()) {
+            return _applyColors(str);
+        }
+        return str;
     } else {
         return str;
     }

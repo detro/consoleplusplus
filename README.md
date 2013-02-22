@@ -84,6 +84,16 @@ to print something like:
 
 **PLEASE**, do read the code to learn more.
 
+## Does it work in the browser?
+
+Of course, dummy! Although, there are caveats:
+
+* It only works in Chrome 27+ (so, at time of writing, [Canary](https://www.google.co.uk/intl/en/chrome/browser/canary.html))
+** (in older browsers, it just makes the console text kinda ugly - it won't blow up)
+* `#blink{}` does not work at the moment
+
+Check out `test/index.html` to see it working in the browser.
+
 ## How do I configure it?
 
 **Console++** adds some few little methods to the `console` so you can tune
