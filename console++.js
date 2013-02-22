@@ -158,6 +158,7 @@ var _decorateArgs = function(argsArray, level) {
     } else if (console.isColored() && console.isBrowser()) {
         // First get all the codes to put at the end of args
         // Then replace all the codes in the message with %c
+        // See this: https://plus.google.com/115133653231679625609/posts/TanDFKEN9Kn
     } else {
         levelMsg = console.getLevelName(level);
     }
