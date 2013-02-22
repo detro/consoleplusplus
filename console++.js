@@ -48,6 +48,21 @@ var _ANSICODES = {
         'cyan'      : '\033[36m',
         'white'     : '\033[37m'
     },
+    _CSSCODES = {
+        'reset'     : '\033[0m',
+        'bold'      : '\033[1m',
+        'italic'    : '\033[3m',
+        'underline' : '\033[4m',
+        'blink'     : '\033[5m',
+        'black'     : 'color:black;',
+        'red'       : 'color:red;',
+        'green'     : 'color:green;',
+        'yellow'    : 'color:yellow;',
+        'blue'      : 'color:blue;',
+        'magenta'   : 'color:magenta;',
+        'cyan'      : 'color:cyan;',
+        'white'     : 'color:white;'
+    },
     _LEVELS     = {
         ERROR       : 0,
         WARN        : 1,
@@ -133,13 +148,16 @@ var _decorateArgs = function(argsArray, level) {
         msg = argsArray[0],
         levelMsg;
 
-    if (console.isColored()) {
+    if (console.isColored() && !console.isBrowser()) {
         levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}");
         msg = _applyColors(msg);
 
         if (console.isMessageColored()) {
             msg = _applyColors("#" + console.getLevelColor(level) + "{" + msg + "}");
         }
+    } else if (console.isColored() && console.isBrowser()) {
+        // First get all the codes to put at the end of args
+        // Then replace all the codes in the message with %c
     } else {
         levelMsg = console.getLevelName(level);
     }
@@ -208,6 +226,21 @@ console.getLevelColor = function(level) {
 };
 console.isLevelVisible = function(levelToCompare) {
     return _level >= levelToCompare;
+};
+
+// Enable/Disable Colored Output
+console.enableColor = function() {
+    _colored = true;
+};
+console.disableColor = function() {
+    _colored = false;
+};
+console.isColored = function () {
+    return _colored;
+};
+
+console.isBrowser = function() {
+    return typeof window !== 'undefined';
 };
 
 // Enable/Disable Colored Output
