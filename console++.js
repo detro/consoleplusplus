@@ -251,38 +251,19 @@ console.onOutput = function(callback) {
 
 // Decodes coloring markup in string
 console.str2clr = function(str) {
-    if (console.isColored()) {
-        return _applyColors(str);
-    } else {
-        return str;
-    }
+    return console.isColored() ? _applyColors(str): str;
 };
 
 // Overrides some key "console" Object methods
-console.error = function(msg) {
-    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.ERROR)) {
-        _console.error.apply(this, _decorateArgs(arguments, _LEVELS.ERROR));
-        _invokeOnOutput(msg, _LEVELS.ERROR);
+['error', 'warn', 'info', 'debug'].forEach(function(method) {
+    var level = _LEVELS[method.toUpperCase()];
+    console[method] = function (msg) {
+      if (arguments.length > 0 && this.isLevelVisible(level)) {
+          _console.debug.apply(this, _decorateArgs(arguments, level));
+          _invokeOnOutput(msg, level);
+      }
     }
-};
-console.warn = function(msg) {
-    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.WARN)) {
-        _console.warn.apply(this, _decorateArgs(arguments, _LEVELS.WARN));
-        _invokeOnOutput(msg, _LEVELS.WARN);
-    }
-};
-console.info = function(msg) {
-    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.INFO)) {
-        _console.info.apply(this, _decorateArgs(arguments, _LEVELS.INFO));
-        _invokeOnOutput(msg, _LEVELS.INFO);
-    }
-};
-console.debug = function(msg) {
-    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.DEBUG)) {
-        _console.debug.apply(this, _decorateArgs(arguments, _LEVELS.DEBUG));
-        _invokeOnOutput(msg, _LEVELS.DEBUG);
-    }
-};
+});
 console.log = function(msg) {
     if (arguments.length > 0) {
         _console.log.apply(this, arguments);
