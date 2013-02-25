@@ -251,11 +251,7 @@ console.onOutput = function(callback) {
 
 // Decodes coloring markup in string
 console.str2clr = function(str) {
-    if (console.isColored()) {
-        return _applyColors(str);
-    } else {
-        return str;
-    }
+    return console.isColored() ? _applyColors(str): str;
 };
 
 // Overrides some key "console" Object methods
