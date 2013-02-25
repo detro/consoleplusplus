@@ -6,7 +6,7 @@ like that.
 And it works with both [PhantomJS](http://phantomjs.org) and
 [NodeJS](http://nodejs.org) (and pretty much any proper JavaScript runtime).
 
-### NPM _onliner_?
+### NPM _one-liner_?
 
 ```
 npm install consoleplusplus
