@@ -80,7 +80,6 @@ var _ANSICODES = {
     _messageColored = false,
     _timed = true,
     _onOutput = null;
-    ;
 
 /**
  * Take a string and apply console ANSI colors for expressions "#color{msg}"
