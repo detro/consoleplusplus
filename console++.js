@@ -179,7 +179,7 @@ var _invokeOnOutput = function(msg, level) {
     var formattedMessage,
         levelName;
 
-    if (_onOutput !== null && typeof(_onOutput) === "function") {
+    if (_onOutput !== null && typeof _onOutput === "function") {
         formattedMessage = _formatMessage(msg, levelName);
         levelName = console.getLevelName(level);
 
@@ -200,10 +200,10 @@ console.getLevel = function() {
     return _level;
 };
 console.getLevelName = function(level) {
-    return _LEVELS_NAME[typeof(level) === "undefined" ? _level : level];
+    return _LEVELS_NAME[typeof level === "undefined" ? _level : level];
 };
 console.getLevelColor = function(level) {
-    return _LEVELS_COLOR[typeof(level) === "undefined" ? _level : level];
+    return _LEVELS_COLOR[typeof level === "undefined" ? _level : level];
 };
 console.isLevelVisible = function(levelToCompare) {
     return _level >= levelToCompare;
