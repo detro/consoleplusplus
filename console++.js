@@ -216,7 +216,7 @@ console.enableColor = function() {
 console.disableColor = function() {
     _colored = false;
 };
-console.isColored = function () {
+console.isColored = function() {
     return _colored;
 };
 
@@ -256,7 +256,7 @@ console.str2clr = function(str) {
 // Overrides some key "console" Object methods
 _LEVELS_NAME.forEach(function(method) {
     var level = _LEVELS[method];
-    console[method.toLowerCase()] = function (msg) {
+    console[method.toLowerCase()] = function(msg) {
       if (arguments.length > 0 && this.isLevelVisible(level)) {
           _console.debug.apply(this, _decorateArgs(arguments, level));
           _invokeOnOutput(msg, level);
