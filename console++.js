@@ -254,15 +254,30 @@ console.str2clr = function(str) {
 };
 
 // Overrides some key "console" Object methods
-_LEVELS_NAME.forEach(function(method) {
-    var level = _LEVELS[method];
-    console[method.toLowerCase()] = function(msg) {
-      if (arguments.length > 0 && this.isLevelVisible(level)) {
-          _console.debug.apply(this, _decorateArgs(arguments, level));
-          _invokeOnOutput(msg, level);
-      }
+console.error = function(msg) {
+    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.ERROR)) {
+        _console.error.apply(this, _decorateArgs(arguments, _LEVELS.ERROR));
+        _invokeOnOutput(msg, _LEVELS.ERROR);
+     }
+};
+console.warn = function(msg) {
+    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.WARN)) {
+        _console.warn.apply(this, _decorateArgs(arguments, _LEVELS.WARN));
+        _invokeOnOutput(msg, _LEVELS.WARN);
     }
-});
+};
+console.info = function(msg) {
+    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.INFO)) {
+        _console.info.apply(this, _decorateArgs(arguments, _LEVELS.INFO));
+        _invokeOnOutput(msg, _LEVELS.INFO);
+    }
+};
+console.debug = function(msg) {
+    if (arguments.length > 0 && this.isLevelVisible(_LEVELS.DEBUG)) {
+        _console.debug.apply(this, _decorateArgs(arguments, _LEVELS.DEBUG));
+        _invokeOnOutput(msg, _LEVELS.DEBUG);
+    }
+};
 console.log = function(msg) {
     if (arguments.length > 0) {
         _console.log.apply(this, arguments);
