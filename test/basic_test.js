@@ -1,5 +1,7 @@
 require("../console++.js");
 
+console.setLevel(console.LEVELS.NONE);
+
 console.log("A (boring) console.log message");
 
 console.debug("An (irrelevant) console.debug message");
@@ -10,13 +12,11 @@ console.warn("A (quite important) console.warning message");
 
 console.error("A (critical!) console.error message");
 
-
 var message = "#red{this} is #cyan{a} #yellow{nice} message";
 console.debug(message);
 
-
 function printLevels() {
-    console.log("test");
+    console.log("log");
     console.debug("debug "+console.str2clr("#cyan{verde}"));
     console.info("info");
     console.warn("warning #blink{blink}")
