@@ -59,6 +59,7 @@ var _ANSICODES = {
         DEBUG       : 4
     },
     _LEVELS_COLOR = [   //< _LEVELS_COLOR position matches the _LEVELS values
+        "NOCOLOR",
         "red",
         "yellow",
         "cyan",
