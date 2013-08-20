@@ -22,5 +22,8 @@
     "author": "Ivan De Marino <http://ivandemarino.me>",
     "license": "BSD",
     "readmeFilename": "README.md",
-    "gitHead": "7c1fd36b34d77821e82a1c699e69eb21364b876c"
+    "gitHead": "7c1fd36b34d77821e82a1c699e69eb21364b876c",
+    "dependencies": {
+        "moment": ">=2.0.0"
+    }
 }

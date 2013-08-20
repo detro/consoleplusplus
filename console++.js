@@ -82,6 +82,7 @@ var _ANSICODES = {
     _colored = true,
     _messageColored = false,
     _timed = true,
+    _timestampFormat = "YYYY-MM-DDTHH:mm:ss.SSS\\Z",
     _onOutput = null;
 
 /**
@@ -161,7 +162,7 @@ var _decorateArgs = function(argsArray, level) {
  */
 var _formatMessage = function(msg, levelMsg) {
     if (console.isTimestamped()) {
-        return "[" + levelMsg + " - " + new Date().toJSON() + "] " + msg;
+        return "[" + levelMsg + " - " + moment().format(_timestampFormat) + "] " + msg;
     } else {
         return "[" + levelMsg + "] " + msg;
     }
@@ -243,6 +244,9 @@ console.disableTimestamp = function() {
 };
 console.isTimestamped = function() {
     return _timed;
+};
+console.setTimestampFormat = function(format) {
+   _timestampFormat = format;
 };
 
 // Set OnOutput Callback (useful to write to file or something)
