@@ -122,6 +122,9 @@ console.isTimestamped();
 console.onOutput(callback);             //< default `null`
 ```
 
+## Limitations
+* Characters `{` and `}` are reserved: using those will produce an undefined result
+
 ## Links
 
 * On NPM: https://npmjs.org/package/consoleplusplus
