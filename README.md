@@ -19,7 +19,7 @@ Like this:
 ```javascript
 // here console is not that awesomeR
 
-require("console++");
+require("consoleplusplus");
 // or
 require("./console++.js"); //< if downloaded locally
 
