@@ -1,3 +1,5 @@
+[![NPM version](https://badge.fury.io/js/consoleplusplus.png)](http://badge.fury.io/js/consoleplusplus)
+
 # Console++ - enhance your `console`
 
 **Console++** makes your `console` awesomeR. Colours, logging level and shit
