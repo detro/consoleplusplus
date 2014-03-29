@@ -82,6 +82,7 @@ var _ANSICODES = {
     _level = _LEVELS.DEBUG,
     _colored = true,
     _messageColored = false,
+    _printLevel = true,
     _timed = true,
     _onOutput = null;
 
@@ -161,11 +162,21 @@ var _decorateArgs = function(argsArray, level) {
  * @retuns The formatted message
  */
 var _formatMessage = function(msg, levelMsg) {
-    if (console.isTimestamped()) {
-        return "[" + levelMsg + " - " + new Date().toJSON() + "] " + msg;
+    var printLevelMsg = console.isLevelMsgPrinted(),
+        printTimestamp = console.isTimestamped(),
+        formatted;
+
+    if (printLevelMsg && printTimestamp) {
+        formatted = "[" + levelMsg + " - " + new Date().toJSON() + "] " + msg;
+    } else if (printLevelMsg) {
+        formatted = "[" + levelMsg + "] " + msg;
+    } else if (printTimestamp) {
+        formatted = "[" + new Date().toJSON() + "] " + msg;
     } else {
-        return "[" + levelMsg + "] " + msg;
+        formatted = msg;
     }
+
+    return formatted;
 };
 
 /**
@@ -233,6 +244,17 @@ console.disableMessageColor = function() {
 };
 console.isMessageColored = function() {
     return _messageColored;
+};
+
+// Enable/Disable Level Printing in Output
+console.enableLevelMsg = function() {
+    _printLevel = true;
+};
+console.disableLevelMsg = function() {
+    _printLevel = false;
+};
+console.isLevelMsgPrinted = function() {
+    return _printLevel;
 };
 
 // Enable/Disable Timestamped Output
