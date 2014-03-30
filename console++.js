@@ -46,7 +46,8 @@ var _ANSICODES = {
         'blue'      : '\033[34m',
         'magenta'   : '\033[35m',
         'cyan'      : '\033[36m',
-        'white'     : '\033[37m'
+        'white'     : '\033[37m',
+        'grey'      : '\033[90m'
     },
     _LEVELS     = {
         NONE        : 0,
