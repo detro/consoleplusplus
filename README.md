@@ -8,6 +8,9 @@ like that.
 And it works with both [PhantomJS](http://phantomjs.org) and
 [NodeJS](http://nodejs.org) (and pretty much any proper JavaScript runtime).
 
+[![NPM](https://nodei.co/npm/consoleplusplus.png?downloads=true)](https://nodei.co/npm/consoleplusplus/)
+[![NPM](https://nodei.co/npm-dl/consoleplusplus.png)](https://nodei.co/npm/consoleplusplus/)
+
 ### NPM _one-liner_?
 
 ```
