@@ -97,7 +97,7 @@ it a bit, based on your taste.
 I'd like to be very lazy and say _"go read the code"_, but I guess I can list
 here those methods.
 
-```javascript```
+```javascript
 console.LEVELS  = _LEVELS;
 
 // Set/Get Level
