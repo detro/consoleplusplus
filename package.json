@@ -1,26 +1,26 @@
 {
-    "name": "consoleplusplus",
-    "version": "1.3.0",
-    "description": "Console++ - enhance your console",
-    "main": "console++.js",
-    "directories": {
-        "test": "test"
-    },
-    "scripts": {
-        "test": "node test/basic_test.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/detro/consoleplusplus.git"
-    },
-    "keywords": [
-        "console",
-        "log",
-        "level",
-        "colours",
-        "standard output"
-    ],
-    "author": "Ivan De Marino <http://ivandemarino.me>",
-    "license": "BSD",
-    "readmeFilename": "README.md"
+  "name": "consoleplusplus",
+  "version": "1.4.0",
+  "description": "Console++ - enhance your console",
+  "main": "console++.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/basic_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/detro/consoleplusplus.git"
+  },
+  "keywords": [
+    "console",
+    "log",
+    "level",
+    "colours",
+    "standard output"
+  ],
+  "author": "Ivan De Marino <http://ivandemarino.me>",
+  "license": "BSD",
+  "readmeFilename": "README.md"
 }
