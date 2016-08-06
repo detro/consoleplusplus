@@ -43,6 +43,13 @@ console.enableMessageColor();
 console.setLevel(console.LEVELS.ERROR);
 printLevels();
 
-for (i in console) {
+console.setLevel(console.LEVELS.DEBUG);
+console.disableEqualSpacing();
+printLevels();
+
+console.disableTimestamp();
+printLevels();
+
+for (var i in console) {
     console.log(i + " " + typeof(console[i]));
 }

@@ -122,6 +122,11 @@ console.enableTimestamp();              //< default enabled
 console.disableTimestamp();
 console.isTimestamped();
 
+// Enable/Disable Equal Spacing on Level Name
+console.enableEqualSpacing();           //< default enabled
+console.disableEqualSpacing();
+console.isEqualSpaced();
+
 // Set OnOutput Callback (useful to write to file or something)
 // Callback: `function(formattedMessage, levelName)`
 console.onOutput(callback);             //< default `null`
