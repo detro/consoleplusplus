@@ -85,7 +85,8 @@ var _ANSICODES = {
     _messageColored = false,
     _printLevel = true,
     _timed = true,
-    _onOutput = null;
+    _onOutput = null,
+    _spacing = true;
 
 /**
  * Take a string and apply console ANSI colors for expressions "#color{msg}"
@@ -139,7 +140,11 @@ var _decorateArgs = function(argsArray, level) {
         levelMsg;
 
     if (console.isColored()) {
-        levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + console.getLevelName(level) + "}");
+        levelMsg = console.getLevelName(level);
+        if (!console.isEqualSpaced()) {
+            levelMsg = levelMsg.trim();
+        }
+        levelMsg = _applyColors("#" + console.getLevelColor(level) + "{" + levelMsg + "}");
         msg = _applyColors(msg);
 
         if (console.isMessageColored()) {
@@ -267,6 +272,17 @@ console.disableTimestamp = function() {
 };
 console.isTimestamped = function() {
     return _timed;
+};
+
+// Enable/Disable Equal Spacing on Level Name
+console.enableEqualSpacing = function() {
+    _spacing = true;
+};
+console.disableEqualSpacing = function() {
+    _spacing = false;
+};
+console.isEqualSpaced = function() {
+    return _spacing;
 };
 
 // Set OnOutput Callback (useful to write to file or something)
