@@ -2,11 +2,8 @@ language: node_js
 node_js:
   - 'node'
   - 'lts/*'
-  - '15'
   - '14'
-  - '13'
   - '12'
-  - '11'
   - '8'
 deploy:
   provider: npm
