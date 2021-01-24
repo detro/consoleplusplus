@@ -1,4 +1,5 @@
 [![NPM version](https://badge.fury.io/js/consoleplusplus.png)](http://badge.fury.io/js/consoleplusplus)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_shield)
 
 # Console++ - enhance your `console`
 
@@ -138,3 +139,12 @@ console.onOutput(callback);             //< default `null`
 * On GitHub: https://github.com/detro/consoleplusplus
 
 _Keep calm and make awesome_.
+
+## License
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_large)
+
+[BSD 3-Clause "New" or "Revised" License](./LICENSE)
+
+
+
