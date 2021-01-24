@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 'node'
+  - 'lts/*'
+  - '15'
+  - '14'
+  - '13'
+  - '12'
+  - '11'
+  - '8'
+deploy:
+  provider: npm
+  skip_cleanup: true
+
+  # Publishing conditions
+  on:
+    tags: true
+    repo: detro/consoleplusplus
+    node: 'lts/*'
+
+  # Authentication
+  email: detronizator@gmail.com
+  api_key:
+    secure: BZiBrV/jGEQ4LInefVzta1XWWirVfYletvaMvTcLfhJzBmTsOIdI9w8B/6btXOxTvZoqkztFxc5j/v0M77G9h149HdnFiOpLuuzFDP9zGlYkQBEF9Tz56Z3KvIFh67Av3oqMf83tSEdJbiF4dYgUvIqLXkzvIb+v6Ne8S1NE4DzArxf03fZU8gbPgdW37qPRjiWqNdKbZH/PPGtw7JStAlSrvR2RaTPGOxTTJkeLVRWnK5vbVb0TShGYHj2ki/86zaiyG4B0JKLQenKt81KTFCwJdNAz/qCwT0fOEhgl7rutlx6pvekvBtuYERKZXxZmb9+pTbBX+0P+45mWn2DNUYMGizhnMADQrU1gidZWJUJGHqkctKIn6MM9u/+t+gA7i66JsjW53ZT/1xcA3FnyvoJNUejzPy4ljLGW30wn4fOUQ9g1J+p1reuMtFCgtlIz5JoRnb30XxoFyhPDts/YeWULGlYdm/4KSNpICOX/ZHMx9S86qUjc2bDnqQdE5TV+PFcvLCuds7zWqj/dhhOSInbRWbByxOqpEpATKrGuKJeyOiQRcCIIo79vlt79c8REft7mUb/NLETmSCURIXZDFnefVLl/xfA437eGmN99aEEFW+UjQY0RG43ArQGm7UHycSAz0UgUADFxhoXeJuzPcjAMOMns69ZAUzfzu+xfpco=
