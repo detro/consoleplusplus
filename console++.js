@@ -302,25 +302,25 @@ console.error = function(msg) {
         _console.error.apply(this, _decorateArgs(arguments, _LEVELS.ERROR));
         _invokeOnOutput(msg, _LEVELS.ERROR);
      }
-};
+}.bind(console);
 console.warn = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.WARN)) {
         _console.warn.apply(this, _decorateArgs(arguments, _LEVELS.WARN));
         _invokeOnOutput(msg, _LEVELS.WARN);
     }
-};
+}.bind(console);
 console.info = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.INFO)) {
         _console.info.apply(this, _decorateArgs(arguments, _LEVELS.INFO));
         _invokeOnOutput(msg, _LEVELS.INFO);
     }
-};
+}.bind(console);
 console.debug = function(msg) {
     if (arguments.length > 0 && this.isLevelVisible(_LEVELS.DEBUG)) {
         _console.debug.apply(this, _decorateArgs(arguments, _LEVELS.DEBUG));
         _invokeOnOutput(msg, _LEVELS.DEBUG);
     }
-};
+}.bind(console);
 console.log = function(msg) {
     if (arguments.length > 0) {
         _console.log.apply(this, arguments);
