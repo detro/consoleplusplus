@@ -1,4 +1,4 @@
-[![NPM version](https://img.shields.io/npm/v/consoleplusplus)
+[![NPM version](https://img.shields.io/npm/v/consoleplusplus)](https://www.npmjs.com/package/consoleplusplus)
 [![Build Status](https://travis-ci.org/detro/consoleplusplus.svg?branch=master)](https://travis-ci.org/detro/consoleplusplus)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_shield)
 
@@ -143,9 +143,11 @@ _Keep calm and make awesome_.
 
 ## License
 
+This project is licensed under [BSD 3-Clause "New" or "Revised" License](./LICENSE).
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_large)
 
-[BSD 3-Clause "New" or "Revised" License](./LICENSE)
+
 
 
 
