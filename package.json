@@ -1,6 +1,6 @@
 {
   "name": "consoleplusplus",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Console++ - enhance your console",
   "main": "console++.js",
   "directories": {
