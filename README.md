@@ -1,4 +1,4 @@
-[![NPM version](https://badge.fury.io/js/consoleplusplus.png)](http://badge.fury.io/js/consoleplusplus)
+[![NPM version](https://img.shields.io/npm/v/consoleplusplus)
 [![Build Status](https://travis-ci.org/detro/consoleplusplus.svg?branch=master)](https://travis-ci.org/detro/consoleplusplus)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_shield)
 
