@@ -4,6 +4,10 @@
 
 # Console++ - enhance your `console`
 
+## Version 2.0.0 Note
+
+Version 2.0.0 is a complete rewrite of Console++ in TypeScript. This provides improved maintainability and type safety. Type declarations are now included in the package.
+
 **Console++** makes your `console` awesomeR. Colours, logging level and shit
 like that.
 
@@ -25,7 +29,7 @@ Like this:
 
 require("consoleplusplus");
 // or
-require("./console++.js"); //< if downloaded locally
+// require("./console++.js"); //< if downloaded locally (prior to v2.0.0)
 
 // now console is very awesomeR!!!
 ```
@@ -36,21 +40,34 @@ It's not a fancy logging library with all the bells and whistles - it's a
 
 _Here is for the lazy developer!_
 
-## How do I use it?
+## Usage
 
-_Ehm_, like a `console` genius! Just type stuff like:
+### Using with TypeScript
 
-```javascript
+Console++ v2.0.0+ includes type declarations. You can import it in your TypeScript projects:
+
+\`\`\`typescript
+import 'consoleplusplus';
+
+// Now you can use the enhanced console methods
+console.info('This is an info message from TypeScript!');
+console.debug('#red{This is a red debug message}');
+\`\`\`
+
+### CommonJS (JavaScript) Usage
+
+For CommonJS (JavaScript) usage, continue to use:
+
+\`\`\`javascript
+require('consoleplusplus');
+
+console.info('This is an info message!');
 console.log("A (boring) console.log message");
-
 console.debug("An (irrelevant) console.debug message");
-
 console.info("A (somewhat important) console.info message");
-
 console.warn("A (quite important) console.warning message");
-
 console.error("A (critical!) console.error message");
-```
+\`\`\`
 
 and you get:
 
@@ -146,8 +163,3 @@ _Keep calm and make awesome_.
 This project is licensed under [BSD 3-Clause "New" or "Revised" License](./LICENSE).
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdetro%2Fconsoleplusplus?ref=badge_large)
-
-
-
-
-

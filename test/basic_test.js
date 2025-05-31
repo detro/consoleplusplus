@@ -1,4 +1,4 @@
-require("../console++.js");
+require("../dist/console++.js");
 
 console.setLevel(console.LEVELS.NONE);
 
@@ -32,7 +32,7 @@ console.disableTimestamp();
 console.setLevel(console.LEVELS.INFO);
 printLevels();
 console.enableTimestamp();
-require("../console++.js");
+require("../dist/console++.js");
 
 console.setLevel(console.LEVELS.WARN);
 console.disableColor();

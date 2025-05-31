@@ -1,13 +1,15 @@
 {
   "name": "consoleplusplus",
-  "version": "1.4.4",
+  "version": "2.0.0",
   "description": "Console++ - enhance your console",
-  "main": "console++.js",
+  "main": "dist/console++.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node test/basic_test.js"
+    "test": "npm run build && node test/basic_test.js",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,16 @@
   ],
   "author": "Ivan De Marino <http://ivandemarino.me>",
   "license": "BSD",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "typescript": "^5.8.3"
+  },
+  "types": "dist/console++.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
 }
